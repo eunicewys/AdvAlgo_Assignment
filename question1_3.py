@@ -1,6 +1,6 @@
 import random
 
-
+# Hash function using folding technique
 def hash_ic_number(ic_number):
     part1 = int(ic_number[0:3])
     part2 = int(ic_number[3:6])
@@ -8,56 +8,113 @@ def hash_ic_number(ic_number):
     part4 = int(ic_number[9:12])
     return part1 + part2 + part3 + part4
 
+# Generate a random 12-digit IC number
 def generate_random_ic():
     return ''.join(random.choices('0123456789', k=12))
 
-def insert_into_hash_table(table_size, ic_list):
-    hash_table = [[] for _ in range(table_size)]
-    collision_count =0
+# Print sample entries in the hash table using mixed index positions
+def print_hash_table_sample(table, table_size):
+    sample_indexes = [1, 2, 4, 20, 46, 68, 378, 586, 889, 1000, 1308, 1986]
+    printed = 0
 
-    for ic in ic_list:
-        hash_code = hash_ic_number(ic)
-        index = hash_code % table_size
+    print(f"\nSample Entries for Table {table_size} (mixed indexes):")
+    for i in sample_indexes:
+        if i < table_size and table[i]:
+            print(f"table[{i:<4}] --> {' --> '.join(table[i])}")
+            printed += 1
 
-        if len(hash_table[index]) > 0:
-            collision_count += 1
+    if printed == 0:
+        print("No entries found at sample indexes. Showing first available entries:")
+        count = 0
+        for i in range(table_size):
+            if table[i]:
+                print(f"table[{i:<4}] --> {' --> '.join(table[i])}")
+                count += 1
+                if count >= 10:
+                    break
 
-        hash_table[index].append(ic)
-
-    return collision_count
-
-
+# Main program
 def main():
-    print("\n=== 10 round of collision test ===\n")
+    print("\n============================================================")
+    print("          10 Rounds of Hash Table Collision Test")
+    print("============================================================")
 
     table_sizes = [1009, 2003]
     total_collisions = {1009: 0, 2003: 0}
+    total_filled_slots = {1009: 0, 2003: 0}
     round_collisions = []
 
     for round_num in range(1, 11):
-        print(f"\n- Round {round_num} -")
+        print(f"\n============================================================")
+        print(f"                Round {round_num} - Insertion Summary")
+        print(f"============================================================")
+
         ic_numbers = [generate_random_ic() for _ in range(1000)]
 
-        collision_1009 = insert_into_hash_table(1009, ic_numbers)
-        collision_2003 = insert_into_hash_table(2003, ic_numbers)
+        # Create empty tables
+        table_1009 = [[] for _ in range(1009)]
+        table_2003 = [[] for _ in range(2003)]
+        collisions_1009 = 0
+        collisions_2003 = 0
 
-        total_collisions[1009] += collision_1009
-        total_collisions[2003] += collision_2003
+        for ic in ic_numbers:
+            h1 = hash_ic_number(ic) % 1009
+            if table_1009[h1]:
+                collisions_1009 += 1
+            table_1009[h1].append(ic)
 
-        total_round = collision_1009 + collision_2003
+            h2 = hash_ic_number(ic) % 2003
+            if table_2003[h2]:
+                collisions_2003 += 1
+            table_2003[h2].append(ic)
+
+        # Count filled slots
+        filled_1009 = sum(1 for bucket in table_1009 if bucket)
+        filled_2003 = sum(1 for bucket in table_2003 if bucket)
+        total_filled_slots[1009] += filled_1009
+        total_filled_slots[2003] += filled_2003
+
+        total_collisions[1009] += collisions_1009
+        total_collisions[2003] += collisions_2003
+        total_round = collisions_1009 + collisions_2003
         round_collisions.append(total_round)
 
-        print(f"Table size 1009: {collision_1009} collisions")
-        print(f"Table size 2003: {collision_2003} collisions")
-        print(f"Total collisions for round {round_num}: {total_round}")
+        print(f"\n[Table Size: 1009]")
+        print(f"Total Collisions  : {collisions_1009}")
+        print(f"Filled Slots      : {filled_1009} / 1009")
+        print(f"Collision Rate    : {(collisions_1009 / 1000) * 100:.2f} %")
 
+        print(f"\n[Table Size: 2003]")
+        print(f"Total Collisions  : {collisions_2003}")
+        print(f"Filled Slots      : {filled_2003} / 2003")
+        print(f"Collision Rate    : {(collisions_2003 / 1000) * 100:.2f} %")
 
-    print("\n\n=== Average collisions for each table ===")
+        print("\n------------------------------------------------------------")
+        print_hash_table_sample(table_1009, 1009)
+        print_hash_table_sample(table_2003, 2003)
+        print("------------------------------------------------------------")
+
+    # Final summary
+    print("\n============================================================")
+    print("               Final Summary After 10 Rounds")
+    print("============================================================")
+
     for size in table_sizes:
-        avg = total_collisions[size] / 10
-        print(f"average for table size {size}: {avg:.2f}")
+        avg_collisions = total_collisions[size] / 10
+        avg_filled = total_filled_slots[size] / 10
+        collision_rate = (avg_collisions / 1000) * 100
+        print(f"[Table Size {size}]")
+        print(f"Average Collisions      : {avg_collisions:.2f}")
+        print(f"Average Filled Slots    : {avg_filled:.2f} / {size}")
+        print(f"Average Collision Rate  : {collision_rate:.2f} %\n")
+
+    print("Total Combined Collisions Per Round:")
+    for i, total in enumerate(round_collisions, 1):
+        print(f"Round {i:<2}: {total} total collisions")
+    print("============================================================")
 
 if __name__ == "__main__":
     main()
+
 
 
