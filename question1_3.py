@@ -13,17 +13,23 @@ def generate_random_ic():
 
 def print_hash_table_sample(table, table_size, sample_limit=10):
 
-    sampled_index = random.sample(range(table_size), sample_limit)
-    printed = 0
+    random_indexes = random.sample(range(table_size), 30)
+    filled_samples = []
 
-    print(f"\nSample Entries for Table {table_size} (random index):")
-    for i in sampled_index:
+    for i in random_indexes:
         if table[i]:
-            print(f"table[{i:<4}] --> {' --> '.join(table[i])}")
-            printed += 1
+            filled_samples.append(i)
+        if len(filled_samples) >= sample_limit:
+            break
 
-    if printed == 0:
-        print("No entries found in sampled indexes. Scanning for fallback entries:")
+    filled_samples.sort()
+
+    print(f"\nSample Entries for Table {table_size} (random & sorted):")
+    if filled_samples:
+        for i in filled_samples:
+            print(f"table[{i:<4}] --> {' --> '.join(table[i])}")
+    else:
+        print("No entries found in sampled indexes. Showing fallback entries:")
         count = 0
         for i in range(table_size):
             if table[i]:
@@ -31,6 +37,7 @@ def print_hash_table_sample(table, table_size, sample_limit=10):
                 count += 1
                 if count >= sample_limit:
                     break
+
 
 
 def main():
@@ -107,7 +114,7 @@ def main():
         print(f"Average Filled Slots    : {avg_filled:.2f} / {size}")
         print(f"Average Collision Rate  : {collision_rate:.2f} %\n")
 
-    print("Total Combined Collisions for each round:")
+    print("Total combined collisions for each round:")
     for i, total in enumerate(round_collisions, 1):
         print(f"Round {i:<2}: {total} total collisions")
     print("============================================================")
