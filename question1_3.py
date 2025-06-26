@@ -35,34 +35,27 @@ def main():
     round_collisions = []
 
     for round_num in range(1, 11):
-        print(f"- Round {round_num} -")
+        print(f"\n- Round {round_num} -")
         ic_numbers = [generate_random_ic() for _ in range(1000)]
 
-        collisions_1009 = insert_into_hash_table(1009, ic_numbers)
-        collisions_2003 = insert_into_hash_table(2003, ic_numbers)
+        collision_1009 = insert_into_hash_table(1009, ic_numbers)
+        collision_2003 = insert_into_hash_table(2003, ic_numbers)
 
-        total_collisions[1009] += collisions_1009
-        total_collisions[2003] += collisions_2003
+        total_collisions[1009] += collision_1009
+        total_collisions[2003] += collision_2003
 
-        total_round = collisions_1009 + collisions_2003
+        total_round = collision_1009 + collision_2003
         round_collisions.append(total_round)
 
-        print(f"Table size 1009: {collisions_1009} collisions")
-        print(f"Table size 2003: {collisions_2003} collisions")
-        print(f"Total collisions for round {round_num}: {total_round}\n")
+        print(f"Table size 1009: {collision_1009} collisions")
+        print(f"Table size 2003: {collision_2003} collisions")
+        print(f"Total collisions for round {round_num}: {total_round}")
 
 
-    avg_1009 = total_collisions[1009] /10
-    avg_2003 = total_collisions[2003] /10
-
-    print("=== Summary After 10 Rounds ===")
-    print(f"Average collisions for table size 1009: {avg_1009:.2f}")
-    print(f"Average collisions for table size 2003: {avg_2003:.2f}\n")
-
-    print("\n=== Total collisions Per Round ===")
-    for i, total in enumerate(round_collisions, 1):
-        print(f"Round {i}: {total} total collisions")
-
+    print("\n\n=== Average collisions for each table ===")
+    for size in table_sizes:
+        avg = total_collisions[size] / 10
+        print(f"average for table size {size}: {avg:.2f}")
 
 if __name__ == "__main__":
     main()
