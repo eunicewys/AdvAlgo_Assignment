@@ -24,7 +24,7 @@ def print_hash_table_sample(table, table_size, sample_limit=10):
 
     filled_samples.sort()
 
-    print(f"\nSample Entries for Table {table_size} (random & sorted):")
+    print(f"\nSample Entries for Table {table_size}: ")
     if filled_samples:
         for i in filled_samples:
             print(f"table[{i:<4}] --> {' --> '.join(table[i])}")
@@ -52,7 +52,7 @@ def main():
 
     for round_num in range(1, 11):
         print(f"\n============================================================")
-        print(f"                Round {round_num} - Insertion Summary")
+        print(f"                Round {round_num} ")
         print(f"============================================================")
 
         ic_numbers = [generate_random_ic() for _ in range(1000)]
