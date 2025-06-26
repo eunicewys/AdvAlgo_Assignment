@@ -8,32 +8,31 @@ def hash_ic_number(ic_number):
     part4 = int(ic_number[9:12])
     return part1 + part2 + part3 + part4
 
-# Generate a random 12-digit IC number
 def generate_random_ic():
     return ''.join(random.choices('0123456789', k=12))
 
-# Print sample entries in the hash table using mixed index positions
-def print_hash_table_sample(table, table_size):
-    sample_indexes = [1, 2, 4, 20, 46, 68, 378, 586, 889, 1000, 1308, 1986]
+def print_hash_table_sample(table, table_size, sample_limit=10):
+
+    sampled_index = random.sample(range(table_size), sample_limit)
     printed = 0
 
-    print(f"\nSample Entries for Table {table_size} (mixed indexes):")
-    for i in sample_indexes:
-        if i < table_size and table[i]:
+    print(f"\nSample Entries for Table {table_size} (random index):")
+    for i in sampled_index:
+        if table[i]:
             print(f"table[{i:<4}] --> {' --> '.join(table[i])}")
             printed += 1
 
     if printed == 0:
-        print("No entries found at sample indexes. Showing first available entries:")
+        print("No entries found in sampled indexes. Scanning for fallback entries:")
         count = 0
         for i in range(table_size):
             if table[i]:
                 print(f"table[{i:<4}] --> {' --> '.join(table[i])}")
                 count += 1
-                if count >= 10:
+                if count >= sample_limit:
                     break
 
-# Main program
+
 def main():
     print("\n============================================================")
     print("          10 Rounds of Hash Table Collision Test")
@@ -51,7 +50,7 @@ def main():
 
         ic_numbers = [generate_random_ic() for _ in range(1000)]
 
-        # Create empty tables
+
         table_1009 = [[] for _ in range(1009)]
         table_2003 = [[] for _ in range(2003)]
         collisions_1009 = 0
@@ -68,7 +67,7 @@ def main():
                 collisions_2003 += 1
             table_2003[h2].append(ic)
 
-        # Count filled slots
+
         filled_1009 = sum(1 for bucket in table_1009 if bucket)
         filled_2003 = sum(1 for bucket in table_2003 if bucket)
         total_filled_slots[1009] += filled_1009
@@ -94,8 +93,8 @@ def main():
         print_hash_table_sample(table_2003, 2003)
         print("------------------------------------------------------------")
 
-    # Final summary
-    print("\n============================================================")
+
+    print("\n\n\n============================================================")
     print("               Final Summary After 10 Rounds")
     print("============================================================")
 
@@ -108,7 +107,7 @@ def main():
         print(f"Average Filled Slots    : {avg_filled:.2f} / {size}")
         print(f"Average Collision Rate  : {collision_rate:.2f} %\n")
 
-    print("Total Combined Collisions Per Round:")
+    print("Total Combined Collisions for each round:")
     for i, total in enumerate(round_collisions, 1):
         print(f"Round {i:<2}: {total} total collisions")
     print("============================================================")
