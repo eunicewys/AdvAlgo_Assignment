@@ -16,7 +16,7 @@ class DirectedGraph:
             print(f"Vertex '{from_vertex}' does not exist. Adding it now.")
             self.addVertex(from_vertex)
         if to_vertex not in self.graph:
-            print(f"\nVertex '{to_vertex}' does not exist. Adding it now.\n")
+            print(f"Vertex '{to_vertex}' does not exist. Adding it now.")
             self.addVertex(to_vertex)
 
         self.graph[from_vertex].append(to_vertex)
@@ -25,25 +25,29 @@ class DirectedGraph:
     def listOutgoingAdjacentVertex(self, vertex):
         """Lists all vertices that have outgoing edges from the given vertex."""
         if vertex not in self.graph:
-            print(f"\nVertex '{vertex}' does not exist in the graph.")
+            print(f"Vertex '{vertex}' does not exist in the graph.")
             return
 
         outgoing = self.graph[vertex]
         if outgoing:
-            print(f"\nOutgoing vertices from '{vertex}': {', '.join(outgoing)}")
+            print(f"Outgoing vertices from '{vertex}': {', '.join(outgoing)}")
         else:
-            print(f"\nNo outgoing edges from vertex '{vertex}'.")
+            print(f"No outgoing edges from vertex '{vertex}'.")
+
 
 if __name__ == "__main__":
     g = DirectedGraph()
 
     g.addVertex("A")
     g.addVertex("B")
+    g.addVertex("C")
     g.addVertex("D")
+
     g.addEdge("A", "B")
     g.addEdge("A", "C")
     g.addEdge("B", "C")
     g.addEdge("C", "D")
+    g.addEdge("D", "A")
 
     g.listOutgoingAdjacentVertex("A")
     g.listOutgoingAdjacentVertex("B")
