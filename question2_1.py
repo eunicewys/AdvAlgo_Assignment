@@ -39,10 +39,13 @@ if __name__ == "__main__":
 
     g.addVertex("A")
     g.addVertex("B")
+    g.addVertex("D")
     g.addEdge("A", "B")
     g.addEdge("A", "C")
     g.addEdge("B", "C")
+    g.addEdge("C", "D")
 
     g.listOutgoingAdjacentVertex("A")
     g.listOutgoingAdjacentVertex("B")
     g.listOutgoingAdjacentVertex("C")
+    g.listOutgoingAdjacentVertex("D")
