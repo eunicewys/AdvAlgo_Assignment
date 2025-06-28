@@ -1,8 +1,5 @@
 class Person:
     def __init__(self, name, gender, bio, privacy="public"):
-        """
-        Create a new Person with basic social media profile information.
-        """
         self.name = name
         self.gender = gender
         self.bio = bio
