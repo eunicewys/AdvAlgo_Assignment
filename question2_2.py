@@ -9,12 +9,12 @@ class Person:
         self.privacy = privacy.lower()
 
     def display_profile(self):
-        print("\n------ Profile ------")
+        print("\n---------- PROFILE ----------")
         print(f"Name    : {self.name}")
         print(f"Gender  : {self.gender}")
         print(f"Bio     : {self.bio}")
         print(f"Privacy : {self.privacy.capitalize()}")
-        print("---------------------")
+        print("-----------------------------")
 
 
 if __name__ == "__main__":
