@@ -9,9 +9,6 @@ class Person:
         self.privacy = privacy.lower()
 
     def display_profile(self):
-        """
-        Show the person's profile info.
-        """
         print("\n------ Profile ------")
         print(f"Name    : {self.name}")
         print(f"Gender  : {self.gender}")
