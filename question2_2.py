@@ -19,7 +19,6 @@ if __name__ == "__main__":
     p2 = Person("Josiah", "Male", "Love photography and hiking", "private")
     p3 = Person("Kay See", "Female", "A formerly known ENTP that enjoys outdoor", "public")
 
-    # Display their profiles
     p1.display_profile()
     p2.display_profile()
     p3.display_profile()
