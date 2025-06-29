@@ -122,6 +122,9 @@ def main():
     smg.add_follow("Ahmad", "Kelvan")
     smg.add_follow("Jaeson", "Rachel")
     smg.add_follow("Jaeson", "Cara")
+    smg.add_follow("Cara", "Kelvan")
+    smg.add_follow("Kelvan", "Jaeson")
+    smg.add_follow("Kelvan", "Rachel")
 
 
     while True:
