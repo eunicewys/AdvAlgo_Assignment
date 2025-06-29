@@ -79,18 +79,19 @@ if __name__ == "__main__":
     for person in people:
         gram.add_user(person)
 
-    gram.add_follow(people[0], people[1])  # Rachel ➝ Cara
-    gram.add_follow(people[0], people[2])  # Rachel ➝ Jaeson
-    gram.add_follow(people[0], people[4])  # Rachel ➝ Ahmad
-    gram.add_follow(people[4], people[0])  # Ahmad ➝ Rachel
-    gram.add_follow(people[4], people[3])  # Ahmad ➝ Kelvan
-    gram.add_follow(people[2], people[0])  # Jaeson ➝ Rachel
-    gram.add_follow(people[2], people[1])  # Jaeson ➝ Cara
+    gram.add_follow(people[0], people[1])  # Rachel -> Cara
+    gram.add_follow(people[0], people[2])  # Rachel -> Jaeson
+    gram.add_follow(people[0], people[4])  # Rachel -> Ahmad
+    gram.add_follow(people[4], people[0])  # Ahmad -> Rachel
+    gram.add_follow(people[4], people[3])  # Ahmad -> Kelvan
+    gram.add_follow(people[2], people[0])  # Jaeson -> Rachel
+    gram.add_follow(people[2], people[1])  # Jaeson -> Cara
+    gram.add_follow(people[1], people[3])  # Cara -> Kelvan
 
-    # === Interactive Menu ===
+
     while True:
         print("\n" + "*" * 50)
-        print("Welcome to InstaLite - Social Graph Explorer")
+        print("Welcome to Instaframe - Social Graph Explorer")
         print("*" * 50)
         print("Select an option:")
         print("1. View Profile Details")
@@ -109,7 +110,7 @@ if __name__ == "__main__":
             print("\nThank you for using InstaLite!")
             break
 
-        # Profile selection with validation loop
+
         while True:
             print("\nAvailable Profiles:")
             for i, person in enumerate(people, 1):
@@ -124,7 +125,6 @@ if __name__ == "__main__":
             except ValueError:
                 print("Please enter a valid number (1–5).")
 
-        # Once a valid profile is selected:
         selected = people[index]
         username = selected.get_name()
 
