@@ -14,15 +14,30 @@ class Person:
         print("---------------------")
 
 
+def addPerson(people_list, person):
+    if len(people_list) < 10:
+        people_list.append(person)
+        print(f"Profile added: {person.name}")
+    else:
+        print("**Cannot add more profiles. Maximum 10 reached.**")
+
 
 if __name__ == "__main__":
-    person1 = Person("Alice", "Female", "Love baking and books", "public")
-    person2 = Person("Bob", "Male", "Tech enthusiast and gamer", "private")
-    person3 = Person("Cara", "Female", "Travelling the world", "public")
-    person4 = Person("Dan", "Male", "Photography & coffee addict", "public")
-    person5 = Person("Ella", "Female", "Student, reader, dreamer", "private")
+    people = []
 
-    people = [person1, person2, person3, person4, person5]
+    addPerson(people, Person("Alice", "Female", "Love baking and books", "public"))
+    addPerson(people, Person("Bob", "Male", "Tech enthusiast and gamer", "private"))
+    addPerson(people, Person("Cara", "Female", "Travelling the world", "public"))
+    addPerson(people, Person("Daniel", "Male", "Photography & coffee addict", "public"))
+    addPerson(people, Person("Ella", "Female", "Student, reader, dreamer", "private"))
+    addPerson(people, Person("Finn", "Male", "Dog dad, engineer", "public"))
+    addPerson(people, Person("Gina", "Female", "Cat mom, artist", "private"))
+    addPerson(people, Person("Hank", "Male", "Mountain hiker", "public"))
+    addPerson(people, Person("Ivy", "Female", "Minimalist lifestyle", "public"))
+    addPerson(people, Person("Jake", "Male", "Works in IT", "private"))
+
+    addPerson(people, Person("Kelly", "Female", "Sleeping-beauty", "public"))
 
     for person in people:
         person.displayProfile()
+
