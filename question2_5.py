@@ -109,7 +109,7 @@ def main():
         Person("Cara", "Female", "Just a normal person", "public"),
         Person("Jaeson", "Male", "Loves coding", "public"),
         Person("Kelvan", "Male", "Gym rat & gamer", "public"),
-        Person("Elon", "Male", "Futurist", "public"),
+        Person("Ahmad", "Male", "Futurist", "public"),
     ]
     for p in preload:
         smg.add_user(p)
@@ -117,9 +117,9 @@ def main():
 
     smg.add_follow("Rachel", "Cara")
     smg.add_follow("Rachel", "Jaeson")
-    smg.add_follow("Rachel", "Elon")
-    smg.add_follow("Elon", "Rachel")
-    smg.add_follow("Elon", "Calvin")
+    smg.add_follow("Rachel", "Ahmad")
+    smg.add_follow("Ahmad", "Rachel")
+    smg.add_follow("Ahmad", "Kelvan")
     smg.add_follow("Jaeson", "Rachel")
     smg.add_follow("Jaeson", "Cara")
 
