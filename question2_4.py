@@ -87,10 +87,10 @@ if __name__ == "__main__":
     gram.add_follow(people[2], people[0])  # Jaeson ➝ Rachel
     gram.add_follow(people[2], people[1])  # Jaeson ➝ Cara
 
-
+    # === Interactive Menu ===
     while True:
         print("\n" + "*" * 50)
-        print("Welcome to Instaframe - Social Graph Explorer")
+        print("Welcome to InstaLite - Social Graph Explorer")
         print("*" * 50)
         print("Select an option:")
         print("1. View Profile Details")
@@ -99,52 +99,57 @@ if __name__ == "__main__":
         print("4. Exit")
         print("*" * 50)
 
-        choice = input("Enter your choice (1-4): ")
+        choice = input("Enter your choice (1-4): ").strip()
+
+        if choice not in {"1", "2", "3", "4"}:
+            print("Invalid choice. Please enter a number between 1 and 4.")
+            continue
 
         if choice == "4":
             print("\nThank you for using InstaLite!")
             break
 
-        print("\nAvailable Profiles:")
-        for i, person in enumerate(people, 1):
-            print(f"{i}. {person.get_name()}")
+        # Profile selection with validation loop
+        while True:
+            print("\nAvailable Profiles:")
+            for i, person in enumerate(people, 1):
+                print(f"{i}. {person.get_name()}")
 
-        try:
-            index = int(input("Select a profile (1-5): ")) - 1
-            if index < 0 or index >= len(people):
-                print("Invalid selection. Try again.")
-                continue
+            try:
+                index = int(input("Select a profile (1-5): ").strip()) - 1
+                if index < 0 or index >= len(people):
+                    print("Invalid selection. Please choose a number between 1 and 5.")
+                    continue  # Stay in profile selection
+                break  # Valid profile selected
+            except ValueError:
+                print("Please enter a valid number (1–5).")
 
-            selected = people[index]
-            username = selected.get_name()
+        # Once a valid profile is selected:
+        selected = people[index]
+        username = selected.get_name()
 
-            if choice == "1":
-                gram.display_profile(people, index)
+        if choice == "1":
+            gram.display_profile(people, index)
 
-            elif choice == "2":
-                print("\n" + "=" * 40)
-                print(f"Followers of {username}:")
-                followers = gram.view_followers(username)
-                if followers:
-                    for f in followers:
-                        print(f"- {f}")
-                else:
-                    print("- No followers yet.")
-                print("=" * 40)
-
-            elif choice == "3":
-                print("\n" + "=" * 40)
-                print(f"{username} is following:")
-                following = gram.view_following(username)
-                if following:
-                    for f in following:
-                        print(f"- {f}")
-                else:
-                    print("- Not following anyone.")
-                print("=" * 40)
-
+        elif choice == "2":
+            print("\n" + "=" * 40)
+            print(f"Followers of {username}:")
+            followers = gram.view_followers(username)
+            if followers:
+                for f in followers:
+                    print(f"- {f}")
             else:
-                print("Invalid choice.")
+                print("- No followers yet.")
+            print("=" * 40)
 
-        except ValueError:
-            print("Please enter a valid number.")
+        elif choice == "3":
+            print("\n" + "=" * 40)
+            print(f"{username} is following:")
+            following = gram.view_following(username)
+            if following:
+                for f in following:
+                    print(f"- {f}")
+            else:
+                print("- Not following anyone.")
+            print("=" * 40)
+
