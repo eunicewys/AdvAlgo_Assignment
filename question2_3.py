@@ -13,13 +13,27 @@ class Person:
         print(f"Privacy : {self.privacy.capitalize()}")
         print("---------------------")
 
+def ordinal(n):
+    if 11 <= n % 100 <= 13:
+        return f"{n}th"
+    elif n % 10 == 1:
+        return f"{n}st"
+    elif n % 10 == 2:
+        return f"{n}nd"
+    elif n % 10 == 3:
+        return f"{n}rd"
+    else:
+        return f"{n}th"
 
+# Enhanced function with profile numbering
 def addPerson(people_list, person):
     if len(people_list) < 10:
         people_list.append(person)
-        print(f"Profile added: {person.name}")
+        profile_num = len(people_list)
+        print(f"{ordinal(profile_num)} profile added: {person.name}")
     else:
-        print("**Cannot add more profiles. Maximum 10 reached.**")
+        print("**Cannot add more profiles. Maximum 10 only.")
+
 
 
 if __name__ == "__main__":
