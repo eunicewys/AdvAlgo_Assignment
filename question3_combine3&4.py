@@ -21,7 +21,7 @@ def run_combined_test():
 
     print("\nRound-by-Round Performance Comparison:")
     print("+--------+----------------------------+-----------------------------+------------------------+")
-    print("| Round  | Multithreading Time (ns)   | Non-Multithreading Time (ns) | Difference (ns)        |")
+    print("| Round  | Multithreading Time (ns)   | Non-Multithreading Time (ns) | Difference (ns)       |")
     print("+--------+----------------------------+-----------------------------+------------------------+")
 
     for round_num in range(1, 11):
@@ -53,7 +53,7 @@ def run_combined_test():
         diff = nt_time - mt_time
         differences.append(diff)
 
-        print(f"| {round_num:<6} | {mt_time:<26} | {nt_time:<27}  | {diff:<22} |")
+        print(f"| {round_num:<6} | {mt_time:<26} | {nt_time:<27}  | {diff:<22}|")
 
     print("+--------+----------------------------+-----------------------------+------------------------+")
 
