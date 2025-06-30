@@ -50,7 +50,7 @@ class SocialMediaGraph:
         for user in self.users:
             print(f"- {user.get_name()}")
 
-    def view_profile_ignore_privacy(self, name):
+    def view_profile_no_privacy(self, name):
         for user in self.users:
             if user.get_name() == name:
                 print("\n--- Profile (Privacy Ignored) ---")
