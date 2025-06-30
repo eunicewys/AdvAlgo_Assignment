@@ -2,7 +2,7 @@ import random
 import time
 
 
-def generate_sorted_random_numbers():
+def generate_random_numbers():
     numbers = []
     for _ in range(100):
         num = random.randint(0, 10000)
@@ -15,21 +15,21 @@ def non_multithreading_test():
     round_times = []
 
     print("\n+--------------------------------------------------------------+")
-    print("| Round | Non-Multithreading Time (ns)                         |")
+    print("| Round  |   Non-Multithreading Time (ns)                      |")
     print("+--------------------------------------------------------------+")
 
     for round_num in range(1, 11):
         t1 = time.time_ns()
 
-        set1 = generate_sorted_random_numbers()
-        set2 = generate_sorted_random_numbers()
-        set3 = generate_sorted_random_numbers()
+        set1 = generate_random_numbers()
+        set2 = generate_random_numbers()
+        set3 = generate_random_numbers()
 
         t2 = time.time_ns()
         time_taken = t2 - t1
         round_times.append(time_taken)
 
-        print(f"|   {round_num:<4} | {time_taken:<43} |")
+        print(f"|   {round_num:<4} |         {time_taken:<43} |")
 
     print("+--------------------------------------------------------------+")
 
