@@ -149,7 +149,7 @@ def main():
 
         elif choice == "2":
             name = input("Enter the name of the user to view (ignore privacy): ").strip()
-            smg.view_profile_ignore_privacy(name)
+            smg.view_profile_no_privacy(name)
 
         elif choice == "3":
             name = input("Enter the name of the user to view: ").strip()
