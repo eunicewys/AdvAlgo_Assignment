@@ -17,7 +17,7 @@ def multithreading_test():
     round_times = []
 
     print("\n+--------------------------------------------------------------+")
-    print("| Round | Multithreading Time (ns)                             |")
+    print("| Round  |      Multithreading Time (ns)                       |")
     print("+--------------------------------------------------------------+")
 
     for round_num in range(1, 11):
@@ -39,7 +39,7 @@ def multithreading_test():
         time_taken = t2 - t1
         round_times.append(time_taken)
 
-        print(f"|   {round_num:<4} | {time_taken:<43} |")
+        print(f"|   {round_num:<4} |        {time_taken:<43}  |")
 
     print("+--------------------------------------------------------------+")
 
