@@ -2,19 +2,18 @@ import random
 import threading
 import time
 
-# Function to generate and sort 100 random numbers
-def generate_sorted_random_numbers():
+
+def generate_random_numbers():
     numbers = []
     for _ in range(100):
         numbers.append(random.randint(0, 10000))
     numbers.sort()
     return numbers
 
-# Worker function for threads
-def thread_task(result_list, index):
-    result_list[index] = generate_sorted_random_numbers()
 
-# Combined test
+def thread_task(result_list, index):
+    result_list[index] = generate_random_numbers()
+
 def run_combined_test():
     multithread_times = []
     non_multithread_times = []
@@ -26,7 +25,7 @@ def run_combined_test():
     print("+--------+----------------------------+-----------------------------+------------------------+")
 
     for round_num in range(1, 11):
-        # --- Multithreading ---
+
         thread_results = [None] * 3
         threads = []
 
@@ -41,16 +40,16 @@ def run_combined_test():
         mt_time = mt_end - mt_start
         multithread_times.append(mt_time)
 
-        # --- Non-Multithreading ---
+
         nt_start = time.time_ns()
-        set1 = generate_sorted_random_numbers()
-        set2 = generate_sorted_random_numbers()
-        set3 = generate_sorted_random_numbers()
+        set1 = generate_random_numbers()
+        set2 = generate_random_numbers()
+        set3 = generate_random_numbers()
         nt_end = time.time_ns()
         nt_time = nt_end - nt_start
         non_multithread_times.append(nt_time)
 
-        # --- Difference ---
+
         diff = nt_time - mt_time
         differences.append(diff)
 
@@ -58,7 +57,7 @@ def run_combined_test():
 
     print("+--------+----------------------------+-----------------------------+------------------------+")
 
-    # Totals & Averages
+
     mt_total = sum(multithread_times)
     nt_total = sum(non_multithread_times)
     diff_total = sum(differences)
@@ -75,6 +74,6 @@ def run_combined_test():
     print(f"| Average Time   | {mt_avg:<26.1f} | {nt_avg:<27.1f} | {diff_avg:<22.1f} |")
     print("+----------------+----------------------------+-----------------------------+------------------------+")
 
-# Run the test
+
 if __name__ == "__main__":
     run_combined_test()
