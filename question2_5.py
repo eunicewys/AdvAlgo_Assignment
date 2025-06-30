@@ -105,10 +105,10 @@ def main():
     smg = SocialMediaGraph()
 
     preload = [
-        Person("Rachel", "Female", "*****", "private"),
+        Person("Rachel", "Female", "Dare to dream", "private"),
         Person("Cara", "Female", "Just a normal person", "public"),
         Person("Jaeson", "Male", "Loves coding", "public"),
-        Person("Kelvan", "Male", "Gym rat & gamer", "public"),
+        Person("Kelvan", "Male", "Gym rat & gamer", "private"),
         Person("Ahmad", "Male", "Futurist", "public"),
     ]
     for p in preload:
@@ -125,6 +125,7 @@ def main():
     smg.add_follow("Cara", "Kelvan")
     smg.add_follow("Kelvan", "Jaeson")
     smg.add_follow("Kelvan", "Rachel")
+    smg.add_follow("Kelvan", "Cara")
 
 
     while True:
