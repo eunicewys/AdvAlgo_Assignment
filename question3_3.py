@@ -2,7 +2,7 @@ import random
 import threading
 import time
 
-def generate_sorted_random_numbers():
+def generate_random_num():
     numbers = []
     for _ in range(100):
         num = random.randint(0, 10000)
@@ -11,7 +11,7 @@ def generate_sorted_random_numbers():
     return numbers
 
 def thread_task(result_list, index):
-    result_list[index] = generate_sorted_random_numbers()
+    result_list[index] = generate_random_num()
 
 def multithreading_test():
     round_times = []
